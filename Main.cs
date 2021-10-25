@@ -17,7 +17,7 @@ namespace AntiVPN_TShock
         public override string Name => "Anti-VPN Plugin";
         public override Version Version
         {
-            get { return new Version(1, 0, 0, 1); }
+            get { return new Version(1, 0, 0, 2); }
         }
         public AntiVPN_TShock(Main game) : base(game)
         {
@@ -35,10 +35,10 @@ namespace AntiVPN_TShock
         async void OnJoinAsync(JoinEventArgs args)
         {
 
-            if (args == null)
+            if (TShock.Players[args.Who] == null)
                 return;
 
-            if (args != null)
+            try
             {
                 var httpRequest = (HttpWebRequest)WebRequest.Create("http://v2.api.iphub.info/ip/" + TShock.Players[args.Who].IP);
 
@@ -68,6 +68,11 @@ namespace AntiVPN_TShock
                         Console.WriteLine(TShock.Players[args.Who].IP + "'s Connection is not checked, Status : " + statusCode);
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                //TShock.Players[args.Who].Disconnect("Server join failed, try again in a few minutes.");
+                Console.WriteLine(TShock.Players[args.Who].IP + "'s Connection is not checked, Error : " + e);
             }
         }
 
