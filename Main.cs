@@ -19,6 +19,9 @@ namespace AntiVPN_TShock
         {
             get { return new Version(1, 0, 0, 2); }
         }
+        public static string ConfigPath => Path.Combine("tshock", "AntiVPNConfig.json");
+
+        public static AntiVPNConfig Config = new AntiVPNConfig();
         public AntiVPN_TShock(Main game) : base(game)
         {
 
@@ -28,8 +31,25 @@ namespace AntiVPN_TShock
 
         public override void Initialize()
         {
-
+            ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
             ServerApi.Hooks.ServerJoin.Register(this, OnJoinAsync);
+        }
+
+        private static void OnInitialize(EventArgs args)
+        {
+            if (!File.Exists(TShock.SavePath))
+            {
+                Directory.CreateDirectory(TShock.SavePath);
+            }
+            bool writeConfig = true;
+            if (File.Exists(ConfigPath))
+            {
+                Config.Read(ConfigPath, out writeConfig);
+            }
+            if (writeConfig)
+            {
+                Config.Write(ConfigPath);
+            }
         }
 
         async void OnJoinAsync(JoinEventArgs args)
@@ -42,7 +62,7 @@ namespace AntiVPN_TShock
             {
                 var httpRequest = (HttpWebRequest)WebRequest.Create("http://v2.api.iphub.info/ip/" + TShock.Players[args.Who].IP);
 
-                httpRequest.Headers["X-Key"] = "YOUR IPHUB KEY HERE";
+                httpRequest.Headers["X-Key"] = Config.Settings.Key;
                 string getVPN;
 
                 var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
@@ -58,7 +78,7 @@ namespace AntiVPN_TShock
                 {
                     if (getVPN == "1" && TShock.Players[args.Who] != null)
                     {
-                        TShock.Players[args.Who].Disconnect("AntiProxy: Proxy and VPN connections are not permitted.");
+                        TShock.Players[args.Who].Disconnect(Config.Settings.PositiveKickMessage);
                     }
                 }
                 else
@@ -71,7 +91,10 @@ namespace AntiVPN_TShock
             }
             catch (Exception e)
             {
-                //TShock.Players[args.Who].Disconnect("Server join failed, try again in a few minutes.");
+                if (Config.Settings.KickWhenError)
+                {
+                    TShock.Players[args.Who].Disconnect(Config.Settings.ErrorKickMessage);
+                }
                 Console.WriteLine(TShock.Players[args.Who].IP + "'s Connection is not checked, Error : " + e);
             }
         }
@@ -80,6 +103,7 @@ namespace AntiVPN_TShock
         {
             if (disposing)
             {
+                ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnJoinAsync);
             }
             base.Dispose(disposing);
