@@ -1,5 +1,28 @@
-# AntiVPN-TShock
-A simple anti-vpn plugin for TShock powered by iphub.info 
 
-The key is in the Config File(tshock/AntiVPNConfig.json), you must change the key before deploying it to your server. get your key here https://iphub.info
+# ANTI-VPN PLUGIN
 
+Adds functionalities for IPBan and prevents users to join with VPNs.
+
+- Originally made by [hdseventh](https://github.com/hdseventh)
+- First ported as a commision by yours truly for the [Crytal Lake](https://discord.gg/tFWzhWXFYh) server who gave me permission to publish the plugin.
+- 
+## HOW IT WORKS
+
+it will check the connections of joining users to see if they are using a VPN/proxy through an API online (Where you get your key from). 
+So if you get an error from the plugin try to check if the API is down or not.
+
+## HOW TO GET A KEY
+
+if you didnt already you can get a free key from https://iphub.info by simply going to:
+[Pricing] > ["Looking for the free plan (1000 req/day)? Here!"] > [register/login] > [New API key].
+
+## CONFIGS
+
+- 'Enabled' - Whether or not the plugin checks for user's IPs as they join.
+- 'Key' - Your key from https://iphub.info.
+- 'PositiveKickMessage' - The kick message to send the user when the plugin detects that they are using a VPN.
+- 'KickWhenError' - Whether or not the plugin should kick users when an error occurs within the actual VPN check. (Might kick users when the API is down)
+- 'ErrorKickMessage' - The kick message shown the kicked players if the field above is true.
+
+## FORKED REPOSITORY
+https://github.com/hdseventh/AntiVPN-TShock
