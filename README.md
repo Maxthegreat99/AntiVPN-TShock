@@ -1,7 +1,7 @@
 
 # ANTI-VPN PLUGIN
 
-Adds functionalities for IPBan and prevents users to join with VPNs.
+A simple anti-vpn plugin for TShock powered by iphub.info 
 
 - Originally made by [hdseventh](https://github.com/hdseventh)
 - First ported as a commision by yours truly for the [Crytal Lake](https://discord.gg/tFWzhWXFYh) server who gave me permission to publish the plugin.
