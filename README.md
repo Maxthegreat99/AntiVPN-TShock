@@ -5,7 +5,7 @@ A simple anti-vpn plugin for TShock powered by iphub.info
 
 - Originally made by [hdseventh](https://github.com/hdseventh)
 - First ported as a commission by yours truly for the [Crytal Lake](https://discord.gg/tFWzhWXFYh) server who gave me permission to publish the plugin.
-- 
+
 ## How It Works
 
 it will check the connections of joining users to see if they are using a VPN/proxy through an API online (Where you get your key from). 
