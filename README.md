@@ -1,28 +1,161 @@
 
-# ANTI-VPN PLUGIN
+# Anti-VPN Plugin
 
-A simple anti-vpn plugin for TShock powered by iphub.info 
-
+A TShock plugin adding functionalities for IPBan and prevents users to join with VPNs.
 - Originally made by [hdseventh](https://github.com/hdseventh)
 - First ported as a commission by yours truly for the [Crytal Lake](https://discord.gg/tFWzhWXFYh) server who gave me permission to publish the plugin.
 
 ## How It Works
 
-it will check the connections of joining users to see if they are using a VPN/proxy through an API online (Where you get your key from). 
-So if you get an error from the plugin try to check if the API is down or not.
+### AntiVPN:
+For any non-ipbanned users it will check their connection through a configurable list of APIs online (Where you get your keys from). So if you get an error from the plugin try to check if the API online is down or not.
 
-## How To Get A Key
+### AntiBot:
+if a connection is rejected too many times, depending on whats set in the configs the user gets automatically IP-Ban, this means that when they try to join again the plugin wont even check if they have a VPN connection and will directly reject their connection.
 
-if you didnt already you can get a free key from https://iphub.info by simply going to:
-[Pricing] > ["Looking for the free plan (1000 req/day)? Here!"] > [register/login] > [New API key].
+### IPBan:
+The plugin tries to regroup similar ipbans, if you ban an account for example and they have several known IPs, some of which have already been banned then the plugin will try to update the existing IP Ban instead of creating a new ban. 
+
+## Useable APIs
+
+Here are the APIs the plugin can use, the sites where you are meant to get your key are also mentioned. If the API has no key  the value of `ApiKeys` should be "", if the API requires a contact email to use, the value should be your contact email:
+
+```
+  # the values that you can insert into 'IpCheckers'
+  - 'proxycheck'
+  - 'iptrooper'
+  - 'getipintel'
+  - 'ipqualityscore'
+  - 'iphub'
+  - 'iphunter'
+  - 'vpnblocker'
+  - 'ip2location'
+  - 'shodan'
+
+  # https://proxycheck.io
+  # Results updated Jan 19, 2020
+  # Error rate:                     0.00%
+  # NordVPN detection rate:       100.00%
+  # Cryptostorm detection rate:   100.00%
+  # False-flagged homes:            0.00%
+
+  # https://iptrooper.net/
+  # Results updated Jan 19, 2020
+  # Error rate:                     0.00%
+  # NordVPN detection rate:        96.00%
+  # Cryptostorm detection rate:   100.00%
+  # False-flagged homes:            0.00%
+
+  # https://www.getipintel.net/
+  # Results updated Jan 19, 2020
+  # Error rate:                     0.00%
+  # NordVPN detection rate:        86.00%
+  # Cryptostorm detection rate:   100.00%
+  # False-flagged homes:            0.00%
+
+  # https://www.ipqualityscore.com/
+  # Results updated Feb 9, 2020
+  # Error rate:                    0.00%
+  # NordVPN detection rate:       86.00%
+  # Cryptostorm detection rate:   96.43%
+  # False-flagged homes:           0.00%
+
+  # https://iphub.info/
+  # Results updated Jan 19, 2020
+  # Error rate:                    0.00%
+  # NordVPN detection rate:       84.00%
+  # Cryptostorm detection rate:   96.43%
+  # False-flagged homes:           0.00%
+
+  # https://www.iphunter.info/
+  # Results updated Jan 19, 2020
+  # Error rate:                    0.00%
+  # NordVPN detection rate:       60.00%
+  # Cryptostorm detection rate:   92.86%
+  # False-flagged homes:           0.00%
+
+  # https://vpnblocker.net/usage
+  # Results updated Jan 19, 2020
+  # Error rate:                    0.00%
+  # NordVPN detection rate:       64.00%
+  # Cryptostorm detection rate:   82.14%
+  # False-flagged homes:           0.00%
+
+  # https://www.ip2location.io
+  # NOTE: This info is old
+  # Results updated Jul 18, 2019
+  # Error rate: 0%
+  # NordVPN detection rate: 100%
+  # Cryptostorm detection rate: 60%
+  # False-flagged homes: 0%
+
+  # https://www.shodan.io/
+  # Results updated Jan 19, 2020
+  # Error rate:                  55.15%
+  # NordVPN detection rate:      90.00%
+  # Cryptostorm detection rate:   0.00%
+  # False-flagged homes:          0.00%
+
+Source: https://www.spigotmc.org/resources/anti-vpn.58291/
+```
+
+## Permissions
+
+Here are the plugin's permissions:
+
+- 'antivpn.ipban' - This allows you to use the '/ipban' command/sub-commands.
+- 'antivpn.ignoreipban' - This protects you (For the most part) from being IP banned.
 
 ## Configs
 
 - 'Enabled' - Whether or not the plugin checks for user's IPs as they join.
-- 'Key' - Your key from https://iphub.info.
 - 'PositiveKickMessage' - The kick message to send the user when the plugin detects that they are using a VPN.
 - 'KickWhenError' - Whether or not the plugin should kick users when an error occurs within the actual VPN check. (Might kick users when the API is down)
-- 'ErrorKickMessage' - The kick message shown the kicked players if the field above is true.
+- 'ErrorKickMessage' - The kick message shown to kicked players if the field above is true.
+- 'ConnectionTriesLimit' - The amount of tries an VPN IP can have at connecting to the server before getting IP banned.
+- 'AutoIPBanReason' - The ipban reason showed to players when they have reached their connection attempts limit.
+- 'IpCheckers' - List of APIs the plugin can use, can only contain the values cited above.
+- 'ApiKeys' - List of keys that the API needs, the order of the key for a specific api should be the same as the order of the API in 'IPCheckers'.
+- 'DaysBeforeDeletingTrustedIps' - Days it takes for the plugin to remove a trusted ip from its Database.
+
+## Commands
+
+- '/ipban <player/ip> (Optional) <reason> (Optional, must be in a '0d0h0m0s' format) <duration> (Optional) <flag>': 
+Bans the IP of the target for the specified amount of time. 
+
+### Flags:
+'-ip' - this flag should always be positioned as your last parameter, 
+it determines whether or not the first parameter is an IP address, 
+this command can ipban unregistered online players as well as offline players. 
+
+'-l <page>' - this flag should be used as the first parameter, 
+it lists the current active IP-bans, 
+a second parameter can be used to specify the page.
+
+'-d <index>' - this flag too should be used as first parameter,
+it deletes the specified ban using the specified ID.
+
+'-i <index>' - this flag should also be used as the first parameter,
+gives info about the specified ban.
+
+each of the command flags listed above have their command variant,
+'/ipbanlist', '/ipbandel' and '/ipbaninfo' respectively.
+
+### Notes: 
+- if you ipban an offline user they will have all their 'Known IPS' banned that is all the IPS the user have had logined with.
+
+- If you ipban someone and remove the plugin,  the ban wont be valid anymore and the person will be able to join again, so be careful when cleaning your plugins folder! 
+
+- 'Enabled' field in configs dont affect anything about IPBan.
+
+
+## Translating
+
+Most if not all of the plugin's text is located in the 'AntiVPN_Laang.cs' file, you should have too much trouble translating tho if you require assistance im always willing to help. Tho one thing is that you may encounter texts with symbols such as "{0}", "{1}" etc.. in them, do not delete those from the text as it might cause some commands to simply not work, these are where specific varaible texts like player names or indexes should be, hope this helps while translating.
+
+## Thank You <3 !!!
+
+Special thanks to the people at (Crystal Lake)[https://discord.gg/cXt6Urhhan] for allowig me to publish publicly their commission despite the time it took for me to finish it, none of this plugin would be here without them so if you are using the plugin please check out their discord at some point, even if you dont speak spanish sending them some kind words for allowing this publication costs nothing. I also want to thank everyone who encouraged me to continue porting plugins either by using them or supporting me on my (Buy Me A Coffee)[https://www.buymeacoffee.com/maxthegreat], time is not always abundant for me so seeing others use what i make is truly an encouragement. Hope you enjoy the plugin, if you encounter any bugs please report it on this (discord server)[https://www.buymeacoffee.com/maxthegreat].
 
 ## Forked Repository
 https://github.com/hdseventh/AntiVPN-TShock
