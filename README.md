@@ -5,6 +5,9 @@ A TShock plugin adding functionalities for IPBan and prevents users to join with
 - Originally made by [hdseventh](https://github.com/hdseventh)
 - First ported as a commission by yours truly for the [Crytal Lake](https://discord.gg/tFWzhWXFYh) server who gave me permission to publish the plugin.
 
+# Important
+To use this plugin you need to install PluginCommonLibrary Version `>= 4.2.0.5`, heres where you need to get it: https://github.com/Maxthegreat99/PluginCommonLibrary/releases/tag/4.2.0.5, **Please read the release notes before downloading, thank you**
+
 ## How It Works
 
 ### AntiVPN:
@@ -21,7 +24,7 @@ The plugin tries to regroup similar ipbans, if you ban an account for example an
 Here are the APIs the plugin can use, the sites where you are meant to get your key are also mentioned. If the API has no key  the value of `ApiKeys` should be "", if the API requires a contact email to use, the value should be your contact email:
 
 ```md
-  # the values that you can insert into 'IpCheckers'
+  # the values that you can insert into `IpCheckers`
   - 'proxycheck'
   - 'iptrooper'
   - 'getipintel'
@@ -112,7 +115,7 @@ Here are the plugin's permissions:
 - `PositiveKickMessage` - The kick message to send the user when the plugin detects that they are using a VPN.
 - `KickWhenError` - Whether or not the plugin should kick users when an error occurs within the actual VPN check. (Might kick users when the API is down)
 - `ErrorKickMessage` - The kick message shown to kicked players if the field above is true.
-- `ConnectionTriesLimit` - The amount of tries an VPN IP can have at connecting to the server before getting IP banned.
+- `ConnectionTriesLimit` - The amount of tries a VPN IP can have at connecting to the server before getting IP banned.
 - `AutoIPBanReason` - The ipban reason showed to players when they have reached their connection attempts limit.
 - `IpCheckers` - List of APIs the plugin can use, can only contain the values cited above.
 - `ApiKeys` - List of keys that the API needs, the order of the key for a specific api should be the same as the order of the API in `IPCheckers`.
@@ -151,11 +154,11 @@ each of the command flags listed above have their command variant,
 
 ## Translating
 
-Most if not all of the plugin's text is located in the `AntiVPN_Laang.cs` file, you should have too much trouble translating tho if you require assistance im always willing to help. Tho one thing is that you may encounter texts with symbols such as `{0}`, `{1}` etc.. in them, do not delete those from the text as it might cause some commands to simply not work, these are where specific varaible texts like player names or indexes should be, hope this helps while translating.
+Most if not all of the plugin's text is located in the `AntiVPN_Laang.cs` file, you should not have too much trouble translating tho if you require assistance im always willing to help. Tho one thing is that you may encounter texts with symbols such as `{0}`, `{1}` etc.. in them, do not delete those from the text as it might cause some commands to simply not work, these are where specific variable texts like player names or indexes should be, hope this helps while translating.
 
 ## Thank You <3 !!!
 
-Special thanks to the people at [Crystal Lake](https://discord.gg/cXt6Urhhan) for allowing me to publish publicly their commission despite the time it took for me to finish it, none of this plugin would be here without them so if you are using the plugin please check out their discord at some point, even if you dont speak spanish sending them some kind words for allowing this publication costs nothing. I also want to thank everyone who encouraged me to continue porting plugins either by using them or supporting me on my [Buy Me A Coffee](https://www.buymeacoffee.com/maxthegreat), time is not always abundant for me so seeing others use what i make is truly an encouragement. Hope you enjoy the plugin, if you encounter any bugs please report it on this [discord server](https://www.buymeacoffee.com/maxthegreat).
+Special thanks to the people at [Crystal Lake](https://discord.gg/cXt6Urhhan) for allowing me to publish publicly their commission despite the time it took for me to finish it, none of this plugin would be here without them so if you are using this plugin please check out their discord at some point, even if you dont speak spanish sending them some kind words for allowing this publication costs nothing. I also want to thank everyone who encouraged me to continue porting plugins either by using them or supporting me on my [Buy Me A Coffee](https://www.buymeacoffee.com/maxthegreat), time is not always abundant for me so seeing others use what i make is truly an encouragement. Hope you enjoy the plugin, if you encounter any bugs please report it on this [discord server](https://discord.gg/xmHax4BuUR).
 
 ## Forked Repository
 https://github.com/hdseventh/AntiVPN-TShock
