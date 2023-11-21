@@ -20,7 +20,7 @@ The plugin tries to regroup similar ipbans, if you ban an account for example an
 
 Here are the APIs the plugin can use, the sites where you are meant to get your key are also mentioned. If the API has no key  the value of `ApiKeys` should be "", if the API requires a contact email to use, the value should be your contact email:
 
-```
+```md
   # the values that you can insert into 'IpCheckers'
   - 'proxycheck'
   - 'iptrooper'
@@ -103,59 +103,59 @@ Source: https://www.spigotmc.org/resources/anti-vpn.58291/
 
 Here are the plugin's permissions:
 
-- 'antivpn.ipban' - This allows you to use the '/ipban' command/sub-commands.
-- 'antivpn.ignoreipban' - This protects you (For the most part) from being IP banned.
+- `antivpn.ipban` - This allows you to use the `/ipban` command/sub-commands.
+- `antivpn.ignoreipban` - This protects you (For the most part) from being IP banned.
 
 ## Configs
 
-- 'Enabled' - Whether or not the plugin checks for user's IPs as they join.
-- 'PositiveKickMessage' - The kick message to send the user when the plugin detects that they are using a VPN.
-- 'KickWhenError' - Whether or not the plugin should kick users when an error occurs within the actual VPN check. (Might kick users when the API is down)
-- 'ErrorKickMessage' - The kick message shown to kicked players if the field above is true.
-- 'ConnectionTriesLimit' - The amount of tries an VPN IP can have at connecting to the server before getting IP banned.
-- 'AutoIPBanReason' - The ipban reason showed to players when they have reached their connection attempts limit.
-- 'IpCheckers' - List of APIs the plugin can use, can only contain the values cited above.
-- 'ApiKeys' - List of keys that the API needs, the order of the key for a specific api should be the same as the order of the API in 'IPCheckers'.
-- 'DaysBeforeDeletingTrustedIps' - Days it takes for the plugin to remove a trusted ip from its Database.
+- `Enabled` - Whether or not the plugin checks for user's IPs as they join.
+- `PositiveKickMessage` - The kick message to send the user when the plugin detects that they are using a VPN.
+- `KickWhenError` - Whether or not the plugin should kick users when an error occurs within the actual VPN check. (Might kick users when the API is down)
+- `ErrorKickMessage` - The kick message shown to kicked players if the field above is true.
+- `ConnectionTriesLimit` - The amount of tries an VPN IP can have at connecting to the server before getting IP banned.
+- `AutoIPBanReason` - The ipban reason showed to players when they have reached their connection attempts limit.
+- `IpCheckers` - List of APIs the plugin can use, can only contain the values cited above.
+- `ApiKeys` - List of keys that the API needs, the order of the key for a specific api should be the same as the order of the API in `IPCheckers`.
+- `DaysBeforeDeletingTrustedIps` - Days it takes for the plugin to remove a trusted ip from its Database.
 
 ## Commands
 
-- '/ipban <player/ip> (Optional) <reason> (Optional, must be in a '0d0h0m0s' format) <duration> (Optional) <flag>': 
+- `/ipban <player/ip> (Optional) <reason> (Optional, must be in a '0d0h0m0s' format) <duration> (Optional) <flag>`: 
 Bans the IP of the target for the specified amount of time. 
 
 ### Flags:
-'-ip' - this flag should always be positioned as your last parameter, 
+`-ip` - this flag should always be positioned as your last parameter, 
 it determines whether or not the first parameter is an IP address, 
 this command can ipban unregistered online players as well as offline players. 
 
-'-l <page>' - this flag should be used as the first parameter, 
+`-l <page>` - this flag should be used as the first parameter, 
 it lists the current active IP-bans, 
 a second parameter can be used to specify the page.
 
-'-d <index>' - this flag too should be used as first parameter,
+`-d <index>` - this flag too should be used as first parameter,
 it deletes the specified ban using the specified ID.
 
-'-i <index>' - this flag should also be used as the first parameter,
+`-i <index>` - this flag should also be used as the first parameter,
 gives info about the specified ban.
 
 each of the command flags listed above have their command variant,
-'/ipbanlist', '/ipbandel' and '/ipbaninfo' respectively.
+`/ipbanlist`, `/ipbandel` and `/ipbaninfo` respectively.
 
 ### Notes: 
 - if you ipban an offline user they will have all their 'Known IPS' banned that is all the IPS the user have had logined with.
 
 - If you ipban someone and remove the plugin,  the ban wont be valid anymore and the person will be able to join again, so be careful when cleaning your plugins folder! 
 
-- 'Enabled' field in configs dont affect anything about IPBan.
+- `Enabled` field in configs dont affect anything about IPBan.
 
 
 ## Translating
 
-Most if not all of the plugin's text is located in the 'AntiVPN_Laang.cs' file, you should have too much trouble translating tho if you require assistance im always willing to help. Tho one thing is that you may encounter texts with symbols such as "{0}", "{1}" etc.. in them, do not delete those from the text as it might cause some commands to simply not work, these are where specific varaible texts like player names or indexes should be, hope this helps while translating.
+Most if not all of the plugin's text is located in the `AntiVPN_Laang.cs` file, you should have too much trouble translating tho if you require assistance im always willing to help. Tho one thing is that you may encounter texts with symbols such as `{0}`, `{1}` etc.. in them, do not delete those from the text as it might cause some commands to simply not work, these are where specific varaible texts like player names or indexes should be, hope this helps while translating.
 
 ## Thank You <3 !!!
 
-Special thanks to the people at (Crystal Lake)[https://discord.gg/cXt6Urhhan] for allowig me to publish publicly their commission despite the time it took for me to finish it, none of this plugin would be here without them so if you are using the plugin please check out their discord at some point, even if you dont speak spanish sending them some kind words for allowing this publication costs nothing. I also want to thank everyone who encouraged me to continue porting plugins either by using them or supporting me on my (Buy Me A Coffee)[https://www.buymeacoffee.com/maxthegreat], time is not always abundant for me so seeing others use what i make is truly an encouragement. Hope you enjoy the plugin, if you encounter any bugs please report it on this (discord server)[https://www.buymeacoffee.com/maxthegreat].
+Special thanks to the people at [Crystal Lake](https://discord.gg/cXt6Urhhan) for allowing me to publish publicly their commission despite the time it took for me to finish it, none of this plugin would be here without them so if you are using the plugin please check out their discord at some point, even if you dont speak spanish sending them some kind words for allowing this publication costs nothing. I also want to thank everyone who encouraged me to continue porting plugins either by using them or supporting me on my [Buy Me A Coffee](https://www.buymeacoffee.com/maxthegreat), time is not always abundant for me so seeing others use what i make is truly an encouragement. Hope you enjoy the plugin, if you encounter any bugs please report it on this [discord server](https://www.buymeacoffee.com/maxthegreat).
 
 ## Forked Repository
 https://github.com/hdseventh/AntiVPN-TShock
