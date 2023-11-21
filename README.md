@@ -5,7 +5,7 @@ A TShock plugin adding functionalities for IPBan and prevents users to join with
 - Originally made by [hdseventh](https://github.com/hdseventh)
 - First ported as a commission by yours truly for the [Crytal Lake](https://discord.gg/tFWzhWXFYh) server who gave me permission to publish the plugin.
 
-# Important
+## Important
 To use this plugin you need to install PluginCommonLibrary Version `>= 4.2.0.5`, heres where you need to get it: https://github.com/Maxthegreat99/PluginCommonLibrary/releases/tag/4.2.0.5, **Please read the release notes before downloading, thank you**
 
 ## How It Works
